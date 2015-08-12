@@ -9,10 +9,10 @@
 #import "UIButton+ZDCountDown.h"
 
 
-NSTimer *_countTimer;
+static NSTimer *_countTimer;
 static  NSInteger _count;
 static  NSString *_title ;
-UIButtonType _currentButtonType;
+static UIButtonType _currentButtonType;
 @implementation UIButton (ZDCountDown)
 
 // ****************************************************************
@@ -26,6 +26,7 @@ UIButtonType _currentButtonType;
     _title = self.currentTitle;
     _count = second;
     _countTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changecurrentTitleString) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_countTimer forMode:NSRunLoopCommonModes];
     self.userInteractionEnabled = NO;
     
 }
